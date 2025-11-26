@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoadBalanceViz - Visual Load Balancer</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M12 2v20"/><path d="M2 12h20"/><path d="m4.93 4.93 14.14 14.14"/><path d="m19.07 4.93-14.14 14.14"/></svg>
+                <h1>LoadBalanceViz</h1>
+            </div>
+            <div class="status-bar">
+                <span id="status-text">System Ready</span>
+                <div class="status-indicator ready"></div>
+            </div>
+        </header>
+
+        <main>
+            <aside class="sidebar">
+                <div class="control-group">
+                    <h3>Controls</h3>
+                    <div class="control-item">
+                        <label for="algorithm-select">Algorithm</label>
+                        <select id="algorithm-select">
+                            <option value="round-robin">Round Robin</option>
+                            <option value="random">Random</option>
+                            <option value="least-connections">Least Connections</option>
+                        </select>
+                    </div>
+                    <div class="control-item">
+                        <label>Simulation</label>
+                        <button id="btn-start" class="btn primary">Start Traffic</button>
+                        <button id="btn-stop" class="btn secondary" disabled>Stop</button>
+                    </div>
+                    <div class="control-item">
+                        <label>Servers</label>
+                        <div class="btn-group">
+                            <button id="btn-add-server" class="btn icon-btn" title="Add Server">+</button>
+                            <button id="btn-remove-server" class="btn icon-btn" title="Remove Server">-</button>
+                        </div>
+                    </div>
+                    <div class="control-item">
+                        <label for="speed-range">Speed: <span id="speed-val">1x</span></label>
+                        <input type="range" id="speed-range" min="1" max="5" step="1" value="1">
+                    </div>
+                </div>
+
+                <div class="stats-group">
+                    <h3>Statistics</h3>
+                    <div class="stat-item">
+                        <span class="stat-label">Total Requests</span>
+                        <span class="stat-value" id="stat-total">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Active Servers</span>
+                        <span class="stat-value" id="stat-servers">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Dropped</span>
+                        <span class="stat-value error" id="stat-dropped">0</span>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="visualization-area" id="viz-container">
+                <!-- Visualization elements will be injected here by JS -->
+                <div class="client-zone">
+                    <div class="node client-node">
+                        <span class="node-label">Client</span>
+                        <div class="pulse"></div>
+                    </div>
+                </div>
+                
+                <div class="lb-zone">
+                    <div class="node lb-node">
+                        <span class="node-label">Load Balancer</span>
+                    </div>
+                </div>
+
+                <div class="server-zone" id="server-container">
+                    <!-- Servers go here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

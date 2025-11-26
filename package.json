@@ -1,0 +1,20 @@
+{
+  "name": "loadbalanceviz",
+  "version": "1.0.0",
+  "description": "A visual simulator for load balancing algorithms",
+  "scripts": {
+    "generate:screenshots": "node scripts/generate_screenshots.js",
+    "start:ssr": "http-server -p 8080"
+  },
+  "keywords": [
+    "load-balancer",
+    "visualization",
+    "simulation"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "http-server": "^14.1.1",
+    "puppeteer": "^21.6.0"
+  }
+}

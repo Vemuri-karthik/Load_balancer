@@ -76,7 +76,7 @@ async function generateScreenshots() {
     // Launch browser
     console.log('Launching headless browser...');
     browser = await puppeteer.launch({
-      headless: 'new',
+      headless: true,
       args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
     console.log('✓ Browser launched\n');
@@ -118,6 +118,8 @@ async function generateScreenshots() {
     console.log(`Taking screenshot 3/${SCREENSHOTS.length}: ${SCREENSHOTS[2].description}...`);
     
     // Try to change algorithm if dropdown exists
+    // NOTE: Algorithm value 'least-connections' must match the option values in index.html
+    // Update this value if the application's algorithm options change
     try {
       const algoSelect = await page.$('#algorithm-select');
       if (algoSelect) {

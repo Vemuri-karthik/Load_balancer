@@ -4,7 +4,7 @@ const handler = require('http-server/lib/core/index');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 const OUTPUT_DIR = path.join(__dirname, '..', 'assets', 'images');
 
 // Ensure output directory exists
@@ -12,7 +12,25 @@ if (!fs.existsSync(OUTPUT_DIR)) {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 }
 
+async function checkServerRunning() {
+  return new Promise((resolve) => {
+    const req = http.get(`http://localhost:${PORT}`, (res) => {
+      resolve(true);
+    });
+    req.on('error', () => {
+      resolve(false);
+    });
+    req.end();
+  });
+}
+
 async function startServer() {
+  const isRunning = await checkServerRunning();
+  if (isRunning) {
+    console.log(`Server already running on http://localhost:${PORT}`);
+    return null;
+  }
+
   return new Promise((resolve, reject) => {
     const serverHandler = handler.createServer({
       root: path.join(__dirname, '..'),
@@ -107,8 +125,11 @@ async function generateScreenshots() {
       console.log('Browser closed');
     }
     if (server) {
-      server.close(() => {
-        console.log('Server closed');
+      await new Promise((resolve) => {
+        server.close(() => {
+          console.log('Server closed');
+          resolve();
+        });
       });
     }
   }

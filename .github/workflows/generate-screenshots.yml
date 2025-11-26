@@ -3,6 +3,9 @@ name: Generate Screenshots
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   generate-screenshots:
     runs-on: ubuntu-latest

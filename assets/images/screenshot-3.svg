@@ -1,0 +1,13 @@
+<svg width="1200" height="700" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="700" fill="#f5f5f5"/>
+  <rect x="10" y="10" width="1180" height="680" fill="none" stroke="#cccccc" stroke-width="2" stroke-dasharray="10,5"/>
+  <text x="600" y="320" font-family="Arial, sans-serif" font-size="32" fill="#666666" text-anchor="middle" font-weight="bold">
+    Placeholder Screenshot 3
+  </text>
+  <text x="600" y="370" font-family="Arial, sans-serif" font-size="20" fill="#999999" text-anchor="middle">
+    Run the GitHub Actions workflow to generate real screenshots
+  </text>
+  <text x="600" y="410" font-family="Arial, sans-serif" font-size="16" fill="#aaaaaa" text-anchor="middle" font-style="italic">
+    File: assets/images/screenshot-3.svg
+  </text>
+</svg>
